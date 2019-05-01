@@ -19,7 +19,7 @@ class AddServices extends Component {
   componentDidMount() {
     axios
       .get('http://localhost:49567/api/service-types')
-      .then(res => this.setState({items: res.data}))
+      .then(res => this.setState({items: res.data.data}))
       .catch(error => {
         console.log(error);
       })
@@ -27,13 +27,14 @@ class AddServices extends Component {
   }
 
   render() {
+    console.log(this.state.items)
     return (
       <div className="container">
         {this.state.items && this
           .state
           .items
           .map(item => (
-            <p key={item.id}>something</p>
+            <p key={item.id}>{item.display_name}</p>
           ))}
       </div>
     )
