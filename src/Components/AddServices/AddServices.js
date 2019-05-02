@@ -28,13 +28,20 @@ class AddServices extends Component {
     }
   }
 
+  handleInput = (event) => {
+    this.setState({
+      addServicesForm: {
+        [event.target.name]: event.target.value
+      }
+    })
+  }
+
   handleSelect = (event) => {
     this.setState({
       addServicesForm: {
         selected: event.target.value
       }
     })
-    console.log(this.state.addServicesForm.selected)
   }
 
   render() {
@@ -50,22 +57,41 @@ class AddServices extends Component {
       <div className="container">
         <Form>
           <Form.Group controlId="addServices.ControlInput">
-            <Form.Control type="firstName" placeholder="First Name"/>
+            <Form.Control
+              type="text"
+              name="firstName"
+              onChange={this.handleInput}
+              placeholder="First Name"/>
           </Form.Group>
           <Form.Group controlId="addServices.ControlInput">
-            <Form.Control type="lastName" placeholder="Last Name"/>
+            <Form.Control
+              type="text"
+              name="lastName"
+              onChange={this.handleInput}
+              placeholder="Last Name"/>
           </Form.Group>
           <Form.Group controlId="addServices.ControlInput">
-            <Form.Control type="email" placeholder="Email Address"/>
+            <Form.Control
+              type="email"
+              name="email"
+              onChange={this.handleInput}
+              placeholder="Email Address"/>
           </Form.Group>
           <Form.Group controlId="addServices.ControlSelect">
-            <Form.Control as="select" value={this.state.value} onChange={this.handleSelect}>
+            <Form.Control
+              as="select"
+              value={this.state.addServicesForm.selected}
+              onChange={this.handleSelect}>
               <option>Select Service Type</option>
               {services}
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="addServices.ControlTextarea">
-            <Form.Control as="textarea" rows="3"/>
+            <Form.Control
+              as="textarea"
+              name="content"
+              onChange={this.handleInput}
+              rows="3"/>
           </Form.Group>
         </Form>
       </div>
