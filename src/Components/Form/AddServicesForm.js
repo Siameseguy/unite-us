@@ -14,8 +14,23 @@ class AddServicesForm extends Component {
       selected: '',
       content: '',
       error: false,
-      errorCode: ''
+      errorCode: '',
+      submitted: false
     }
+  }
+
+  clearInputs() {
+    this.setState({
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
+      selected: '',
+      content: '',
+      error: false,
+      errorCode: '',
+      submitted: true
+    })
+    console.log(this.state.submitted);
   }
 
   handleInput = (event) => {
@@ -41,7 +56,11 @@ class AddServicesForm extends Component {
         "description": this.state.content
       }
     }).then((response) => {
-      console.log(response);
+      if (response.status === 201) {
+        this.clearInputs();
+        console.log('success', response.status)
+        this.setState({submitted: false});
+      }
     }).catch((error) => {
       this.setState({error: true, errorCode: error.response.status});
     });
@@ -59,56 +78,67 @@ class AddServicesForm extends Component {
       )
     })
 
-    return (
-      <div className="container col-md-6 .offset-md-3">
-        <Form onSubmit={this.handleSubmit}>
-          <h1 className="text-center mb-4">New Assistance Request</h1>
-          <Form.Group controlId="addServices.ControlInput1">
-            <Form.Control
-              type="text"
-              name="firstName"
-              onChange={this.handleInput}
-              placeholder="First Name"/>
-          </Form.Group>
-          <Form.Group controlId="addServices.ControlInput2">
-            <Form.Control
-              type="text"
-              name="lastName"
-              onChange={this.handleInput}
-              placeholder="Last Name"/>
-          </Form.Group>
-          <Form.Group controlId="addServices.ControlInput3">
-            <Form.Control
-              type="email"
-              name="email"
-              onChange={this.handleInput}
-              placeholder="Email Address"/>
-          </Form.Group>
-          <Form.Group controlId="addServices.ControlSelect">
-            <Form.Control
-              as="select"
-              value={this.state.selected}
-              onChange={this.handleSelect}>
-              <option>Select Service Type</option>
-              {services}
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="addServices.ControlTextarea">
-            <Form.Control
-              as="textarea"
-              name="content"
-              onChange={this.handleInput}
-              rows="3"/>
-          </Form.Group>
-          <div className="d-flex justify-content-end">
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </div>
-          {this.state.error}
-        </Form>
-      </div>
-    )
+    if (this.state.submitted === true) {
+      return (
+        <div className="container col-md-6 .offset-md-3">
+          <p>Your assistance request has been successfully submitted.</p>
+          <Button variant="success">
+            Submit a New Request
+          </Button>
+        </div>
+      )
+    } else {
+      return (
+        <div className="container col-md-6 .offset-md-3">
+          <Form onSubmit={this.handleSubmit}>
+            <h1 className="text-center mb-4">New Assistance Request</h1>
+            <Form.Group controlId="addServices.ControlInput1">
+              <Form.Control
+                type="text"
+                name="firstName"
+                onChange={this.handleInput}
+                placeholder="First Name"/>
+            </Form.Group>
+            <Form.Group controlId="addServices.ControlInput2">
+              <Form.Control
+                type="text"
+                name="lastName"
+                onChange={this.handleInput}
+                placeholder="Last Name"/>
+            </Form.Group>
+            <Form.Group controlId="addServices.ControlInput3">
+              <Form.Control
+                type="email"
+                name="email"
+                onChange={this.handleInput}
+                placeholder="Email Address"/>
+            </Form.Group>
+            <Form.Group controlId="addServices.ControlSelect">
+              <Form.Control
+                as="select"
+                value={this.state.selected}
+                onChange={this.handleSelect}>
+                <option>Select Service Type</option>
+                {services}
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="addServices.ControlTextarea">
+              <Form.Control
+                as="textarea"
+                name="content"
+                onChange={this.handleInput}
+                rows="3"/>
+            </Form.Group>
+            <div className="d-flex justify-content-end">
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </div>
+            {this.state.error}
+          </Form>
+        </div>
+      )
+    }
   }
 }
 
