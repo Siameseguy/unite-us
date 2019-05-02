@@ -13,7 +13,8 @@ class AddServicesForm extends Component {
       emailAddress: '',
       selected: '',
       content: '',
-      error: false
+      error: false,
+      errorCode: ''
     }
   }
 
@@ -42,18 +43,22 @@ class AddServicesForm extends Component {
     }).then((response) => {
       console.log(response);
     }).catch((error) => {
-      this.setState({error: true});
-      console.log(error)
+      this.setState({error: true, errorCode: error.response.status});
     });
   }
 
   render() {
+    if (this.state.error) {
+      throw new Error(this.state.errorCode)
+    }
+
     const data = this.props.data
     const services = data.map(item => {
       return (
         <option key={item.id} value={item.display_name}>{item.display_name}</option>
       )
     })
+
     return (
       <div className="container col-md-6 .offset-md-3">
         <Form onSubmit={this.handleSubmit}>
@@ -100,8 +105,8 @@ class AddServicesForm extends Component {
               Submit
             </Button>
           </div>
+          {this.state.error}
         </Form>
-        {console.log(this.state.error)}
       </div>
     )
   }
