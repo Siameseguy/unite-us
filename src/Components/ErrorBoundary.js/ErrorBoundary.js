@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
+import ErrorMessage from './ErrorMessage';
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -13,20 +15,20 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    this.setState({hasError: true, error: error, info: info, errorNumber: error.message});
-    console.log(error.message);
+    this.setState({hasError: true, error, info, errorNumber: error.message});
   }
 
   switchCases(params) {
     switch (params) {
       case '401':
-        return <p className="text-center">Sorry, you are not authorized to make this request.</p>;
+        return <ErrorMessage message={'Sorry, you are not authorized to make this request.'}/>
+
       case '500':
-        return <p className="text-center">Oh no! Something completely unexpected happened!</p>;
+        return <ErrorMessage message={'Oh no! Something completely unexpected happened!'}/>;
       case '503':
-        return <p className="text-center">We're down!!!!!! Come back later.....(please).</p>;
+        return <ErrorMessage message={'We\'re down!!!!!! Come back later.....(please).'}/>;
       default:
-        return <p className="text-center">Oh snap! Something went wrong!</p>;
+        return <ErrorMessage message={'Oh snap! Something went wrong!'}/>;
     }
 
   }
