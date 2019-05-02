@@ -30,7 +30,10 @@ class AddServicesForm extends Component {
       errorCode: '',
       submitted: true
     })
-    console.log(this.state.submitted);
+  }
+
+  resetPage = () => {
+    this.setState({submitted: false})
   }
 
   handleInput = (event) => {
@@ -59,7 +62,7 @@ class AddServicesForm extends Component {
       if (response.status === 201) {
         this.clearInputs();
         console.log('success', response.status)
-        this.setState({submitted: false});
+
       }
     }).catch((error) => {
       this.setState({error: true, errorCode: error.response.status});
@@ -78,11 +81,11 @@ class AddServicesForm extends Component {
       )
     })
 
-    if (this.state.submitted === true) {
+    if (this.state.submitted) {
       return (
         <div className="container col-md-6 .offset-md-3">
           <p>Your assistance request has been successfully submitted.</p>
-          <Button variant="success">
+          <Button variant="success" onClick={this.resetPage}>
             Submit a New Request
           </Button>
         </div>
