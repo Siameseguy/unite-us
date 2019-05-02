@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import AddServicesForm from '../Form/AddServicesForm'
+import ErrorBoundary from '../ErrorBoundary.js/ErrorBoundary';
 
 class AddServices extends Component {
   constructor(props) {
@@ -22,7 +23,11 @@ class AddServices extends Component {
   }
 
   render() {
-    return (<AddServicesForm data={this.state.items}/>)
+    return (
+      <ErrorBoundary>
+        <AddServicesForm data={this.state.items}/>
+      </ErrorBoundary>
+    )
   }
 }
 
