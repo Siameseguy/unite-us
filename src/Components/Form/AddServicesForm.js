@@ -12,7 +12,8 @@ class AddServicesForm extends Component {
       lastName: '',
       emailAddress: '',
       selected: '',
-      content: ''
+      content: '',
+      error: false
     }
   }
 
@@ -35,16 +36,15 @@ class AddServicesForm extends Component {
           "last_name": this.state.lastName,
           "email": this.state.email
         },
-          "service_type": this.state.selected,
-          "description": this.state.content
-        }
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        "service_type": this.state.selected,
+        "description": this.state.content
+      }
+    }).then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      this.setState({error: true});
+      console.log(error)
+    });
   }
 
   render() {
@@ -101,6 +101,7 @@ class AddServicesForm extends Component {
             </Button>
           </div>
         </Form>
+        {console.log(this.state.error)}
       </div>
     )
   }
