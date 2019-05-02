@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Form from 'react-bootstrap/Form';
 
 class AddServices extends Component {
   constructor(props) {
@@ -11,31 +12,46 @@ class AddServices extends Component {
     }
   }
 
-  // async componentDidMount() {   try {     const response = await
-  // fetch('http://localhost:49567/api/service-types');     const json = await
-  // response.json();     this.setState({items: json});   } catch (error) {
-  // this.setState({error: 'this is an error'});   } }
-
-  componentDidMount() {
-    axios
-      .get('http://localhost:49567/api/service-types')
-      .then(res => this.setState({items: res.data.data}))
-      .catch(error => {
-        console.log(error);
-      })
-
+  async componentDidMount() {
+    try {
+      const response = await axios.get('http://localhost:49567/api/service-types');
+      this.setState({items: response.data.data});
+    } catch (error) {
+      this.setState({error: 'this is an error'});
+    }
   }
 
   render() {
-    console.log(this.state.items)
+    const services = this
+      .state
+      .items
+      .map(item => {
+        return (
+          <option key={item.id}>{item.display_name}</option>
+        )
+      })
     return (
       <div className="container">
-        {this.state.items && this
-          .state
-          .items
-          .map(item => (
-            <p key={item.id}>{item.display_name}</p>
-          ))}
+        <Form>
+          <Form.Group controlId="addServices.ControlInput">
+            <Form.Control type="firstName" placeholder="First Name"/>
+          </Form.Group>
+          <Form.Group controlId="addServices.ControlInput">
+            <Form.Control type="lastName" placeholder="Last Name"/>
+          </Form.Group>
+          <Form.Group controlId="addServices.ControlInput">
+            <Form.Control type="email" placeholder="Email Address"/>
+          </Form.Group>
+          <Form.Group controlId="addServices.ControlSelect">
+            <Form.Control as="select">
+              <option>Select Service Type</option>
+              {services}
+            </Form.Control>
+          </Form.Group>
+          <Form.Group controlId="addServices.ControlTextarea">
+            <Form.Control as="textarea" rows="3"/>
+          </Form.Group>
+        </Form>
       </div>
     )
   }
