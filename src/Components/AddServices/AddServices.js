@@ -8,7 +8,14 @@ class AddServices extends Component {
 
     this.state = {
       error: null,
-      items: []
+      items: [],
+      addServicesForm: {
+        firstName: '',
+        lastName: '',
+        emailAddress: '',
+        selected: '',
+        content: ''
+      }
     }
   }
 
@@ -21,13 +28,22 @@ class AddServices extends Component {
     }
   }
 
+  handleSelect = (event) => {
+    this.setState({
+      addServicesForm: {
+        selected: event.target.value
+      }
+    })
+    console.log(this.state.addServicesForm.selected)
+  }
+
   render() {
     const services = this
       .state
       .items
       .map(item => {
         return (
-          <option key={item.id}>{item.display_name}</option>
+          <option key={item.id} value={item.display_name}>{item.display_name}</option>
         )
       })
     return (
@@ -43,7 +59,7 @@ class AddServices extends Component {
             <Form.Control type="email" placeholder="Email Address"/>
           </Form.Group>
           <Form.Group controlId="addServices.ControlSelect">
-            <Form.Control as="select">
+            <Form.Control as="select" value={this.state.value} onChange={this.handleSelect}>
               <option>Select Service Type</option>
               {services}
             </Form.Control>
