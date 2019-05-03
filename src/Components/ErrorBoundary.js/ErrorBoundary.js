@@ -42,7 +42,7 @@ class ErrorBoundary extends React.Component {
       return (
         <div className="container">
           {this.switchCases(this.state.errorNumber)}
-          <div className="d-flex justify-content-center align-items center">
+          <div className="title">
             <Button variant="success" onClick={this.resetError}>Try Again</Button>
           </div>
         </div>

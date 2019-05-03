@@ -83,8 +83,8 @@ class AddServicesForm extends Component {
 
     if (this.state.submitted) {
       return (
-        <div className="container col-md-6 .offset-md-3">
-          <p>Your assistance request has been successfully submitted.</p>
+        <div className="container title">
+          <p className="text-center">Your assistance request has been successfully submitted.</p>
           <Button variant="success" onClick={this.resetPage}>
             Submit a New Request
           </Button>
