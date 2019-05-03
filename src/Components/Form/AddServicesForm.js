@@ -48,7 +48,6 @@ class AddServicesForm extends Component {
     let value = target.type === 'checkbox'
       ? target.checked
       : target.value;
-    console.log(value)
     let name = target.name;
     this.setState({[name]: value})
   }
@@ -65,11 +64,11 @@ class AddServicesForm extends Component {
     let checkError = '';
 
     if (!this.state.firstName) {
-      firstNameError = 'Please provide a first name';
+      firstNameError = 'Please provide a First Name';
     }
 
     if (!this.state.lastName) {
-      lastNameError = 'Please provide a last name';
+      lastNameError = 'Please provide a Last Name';
     }
 
     // validation for email
@@ -81,7 +80,7 @@ class AddServicesForm extends Component {
       selectError = 'Please select a Service Type';
     }
 
-    if (!this.state.checked) {
+    if (!this.state.checkbox) {
       checkError = 'Please accept the terms';
     }
 
@@ -133,7 +132,7 @@ class AddServicesForm extends Component {
 
     if (this.state.submitted) {
       return (
-        <div className="container title">
+        <div className="container title mb-5">
           <p className="text-center">Your assistance request has been successfully submitted.</p>
           <Button variant="success" onClick={this.resetPage}>
             Submit a New Request
@@ -142,7 +141,7 @@ class AddServicesForm extends Component {
       )
     } else {
       return (
-        <div className="container col-md-6 .offset-md-3">
+        <div className="container col-md-6 .offset-md-3 mb-5">
           <Form onSubmit={this.handleSubmit} noValidate>
             <h1 className="text-center mb-4">New Assistance Request</h1>
             <Form.Group controlId="addServices.ControlInput1">
@@ -151,7 +150,7 @@ class AddServicesForm extends Component {
                 name="firstName"
                 onChange={this.handleInput}
                 placeholder="First Name"/>
-              <span>{this.state.firstNameError}</span>
+              <span class="error">{this.state.firstNameError}</span>
             </Form.Group>
             <Form.Group controlId="addServices.ControlInput2">
               <Form.Control
@@ -160,7 +159,7 @@ class AddServicesForm extends Component {
                 onChange={this.handleInput}
                 placeholder="Last Name"
                 required/>
-              <span>{this.state.lastNameError}</span>
+              <span class="error">{this.state.lastNameError}</span>
             </Form.Group>
             <Form.Group controlId="addServices.ControlInput3">
               <Form.Control
@@ -169,7 +168,7 @@ class AddServicesForm extends Component {
                 onChange={this.handleInput}
                 placeholder="Email Address"
                 required/>
-              <span>{this.state.emailError}</span>
+              <span class="error">{this.state.emailError}</span>
             </Form.Group>
             <Form.Group controlId="addServices.ControlSelect">
               <Form.Control
@@ -180,7 +179,7 @@ class AddServicesForm extends Component {
                 <option>Select Service Type</option>
                 {services}
               </Form.Control>
-              <span>{this.state.selectError}</span>
+              <span class="error">{this.state.selectError}</span>
             </Form.Group>
             <Form.Group controlId="addServices.ControlTextarea">
               <Form.Control
@@ -196,11 +195,11 @@ class AddServicesForm extends Component {
                 name="checkbox"
                 onChange={this.handleInput}
                 label="I hearby accept the terms of service for THE NETWORK and the Privacy Policy."/>
-              <span>{this.state.checkbox}</span>
+              <span class="error">{this.state.checkError}</span>
             </Form.Group>
             <div className="d-flex justify-content-end">
               <Button variant="primary" type="submit">
-                Submit
+                Get Assistance
               </Button>
             </div>
           </Form>

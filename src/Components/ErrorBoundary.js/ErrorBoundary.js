@@ -41,8 +41,8 @@ class ErrorBoundary extends React.Component {
     if (this.state.info) {
       return (
         <div className="container">
-          {this.switchCases(this.state.errorNumber)}
           <div className="title">
+            {this.switchCases(this.state.errorNumber)}
             <Button variant="success" onClick={this.resetError}>Try Again</Button>
           </div>
         </div>
