@@ -52,10 +52,6 @@ class AddServicesForm extends Component {
     this.setState({[name]: value})
   }
 
-  handleSelect = (event) => {
-    this.setState({selected: event.target.value})
-  }
-
   validate = () => {
     let firstNameError = '';
     let lastNameError = '';
@@ -90,6 +86,10 @@ class AddServicesForm extends Component {
     }
 
     return true;
+  }
+
+  handleSelect = (event) => {
+    this.setState({selected: event.target.value})
   }
 
   handleSubmit = (event) => {
@@ -141,7 +141,7 @@ class AddServicesForm extends Component {
       )
     } else {
       return (
-        <div className="container col-md-6 .offset-md-3 mb-5">
+        <div className="container col-md-6 offset-md-3 mb-5">
           <Form onSubmit={this.handleSubmit} noValidate>
             <h1 className="text-center mb-4">New Assistance Request</h1>
             <Form.Group controlId="addServices.ControlInput1">
@@ -150,7 +150,9 @@ class AddServicesForm extends Component {
                 name="firstName"
                 onChange={this.handleInput}
                 placeholder="First Name"/>
-              <span class="error">{this.state.firstNameError}</span>
+              <span className="error">
+                <small>{this.state.firstNameError}</small>
+              </span>
             </Form.Group>
             <Form.Group controlId="addServices.ControlInput2">
               <Form.Control
@@ -159,7 +161,9 @@ class AddServicesForm extends Component {
                 onChange={this.handleInput}
                 placeholder="Last Name"
                 required/>
-              <span class="error">{this.state.lastNameError}</span>
+              <span className="error">
+                <small>{this.state.lastNameError}</small>
+              </span>
             </Form.Group>
             <Form.Group controlId="addServices.ControlInput3">
               <Form.Control
@@ -168,7 +172,9 @@ class AddServicesForm extends Component {
                 onChange={this.handleInput}
                 placeholder="Email Address"
                 required/>
-              <span class="error">{this.state.emailError}</span>
+              <span className="error">
+                <small>{this.state.emailError}</small>
+              </span>
             </Form.Group>
             <Form.Group controlId="addServices.ControlSelect">
               <Form.Control
@@ -179,7 +185,9 @@ class AddServicesForm extends Component {
                 <option>Select Service Type</option>
                 {services}
               </Form.Control>
-              <span class="error">{this.state.selectError}</span>
+              <span className="error">
+                <small>{this.state.selectError}</small>
+              </span>
             </Form.Group>
             <Form.Group controlId="addServices.ControlTextarea">
               <Form.Control
@@ -195,7 +203,9 @@ class AddServicesForm extends Component {
                 name="checkbox"
                 onChange={this.handleInput}
                 label="I hearby accept the terms of service for THE NETWORK and the Privacy Policy."/>
-              <span class="error">{this.state.checkError}</span>
+              <span className="error">
+                <small>{this.state.checkError}</small>
+              </span>
             </Form.Group>
             <div className="d-flex justify-content-end">
               <Button variant="primary" type="submit">

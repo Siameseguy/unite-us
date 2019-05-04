@@ -8,21 +8,31 @@ class AddServices extends Component {
     super(props)
 
     this.state = {
-      error: null,
+      error: false,
+      errorMessage: '',
       items: []
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async() => {
     try {
-      const response = await axios.get('http://localhost:49567/api/service-types');
-      this.setState({items: response.data.data});
+      const {data} = await axios.get('http://localhost:49567/api/service-types');
+      this.setState({items: data.data});
+
     } catch (error) {
-      this.setState({error: 'this is an error'});
+      this.setState({error: true, errorMessage: error.message});
     }
   }
 
   render() {
+    if (this.state.error) {
+      throw new Error(this.state.errorMessage);
+    }
+
     return (
       <ErrorBoundary>
         <AddServicesForm data={this.state.items}/>
