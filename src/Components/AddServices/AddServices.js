@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import AddServicesForm from '../Form/AddServicesForm'
-import ErrorBoundary from '../ErrorBoundary.js/ErrorBoundary';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class AddServices extends Component {
   constructor(props) {
@@ -29,6 +29,7 @@ class AddServices extends Component {
   }
 
   render() {
+
     if (this.state.error) {
       throw new Error(this.state.errorMessage);
     }

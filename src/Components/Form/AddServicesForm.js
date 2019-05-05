@@ -25,7 +25,7 @@ class AddServicesForm extends Component {
     }
   }
 
-  clearInputs() {
+  clearInputs = () => {
     this.setState({
       firstName: '',
       lastName: '',
