@@ -67,7 +67,6 @@ class AddServicesForm extends Component {
       lastNameError = 'Please provide a Last Name';
     }
 
-    // validation for email
     if (!this.state.email) {
       emailError = 'Please provide an Email Address';
     }
