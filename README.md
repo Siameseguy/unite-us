@@ -1,21 +1,18 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Coding Challeng
 
-## Available Scripts
+For this challenge, the front-end was built with React. The app has three components:
 
-In the project directory, you can run:
+- AddServices
+- AddServicesForm
+- ErrorBoundary
 
-### `npm start`
+AddServices passes down data from the API as props for the AddServicesForm.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The ErrorBoundary wraps around the AddServices component and watches for any errors in the children that bubble up. The errors that are displayed to the user are dependant on the server error number that comes back after the form is submitted.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+The validations are custom (I wanted to limit the number of external libraries used), and check if any form fields are empty or un-checked.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Tests mainly consist of making mock calls to the API and making sure they are set to state.
 
 ## Tools
 
