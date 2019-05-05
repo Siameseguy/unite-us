@@ -6,7 +6,7 @@ For this challenge, the front-end was built with React. The app has three compon
 - AddServicesForm
 - ErrorBoundary
 
-AddServices passes down data from the API as props for the AddServicesForm.
+AddServices is used to retrieve information from the API and passes the response down to AddServicesForm as props.
 
 The ErrorBoundary wraps around the AddServices component and watches for any errors in the children that bubble up. The errors that are displayed to the user are dependant on the server error number that comes back after the form is submitted.
 
