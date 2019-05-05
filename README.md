@@ -23,5 +23,5 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 - axios
 - react-bootstrap
 - bootstrap
-- nyzme
+- enyzme
 - enzyme-adapter-react-16
