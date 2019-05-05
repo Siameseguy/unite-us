@@ -109,8 +109,6 @@ class AddServicesForm extends Component {
       }).then((response) => {
         if (response.status === 201) {
           this.clearInputs();
-          console.log('success', response.status)
-
         }
       }).catch((error) => {
         this.setState({error: true, errorCode: error.response.status});
@@ -120,7 +118,7 @@ class AddServicesForm extends Component {
 
   render() {
     if (this.state.error) {
-      throw new Error(this.state.errorCode)
+      throw new Error(this.state.errorCode);
     }
 
     const data = this.props.data
