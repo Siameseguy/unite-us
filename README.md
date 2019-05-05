@@ -16,6 +16,10 @@ The validations are custom (I wanted to limit the number of external libraries u
 
 Tests mainly consist of making mock calls to the API and making sure they are set to state.
 
+## Issues
+
+When the form is submitted and if there is a server error, the red overlay appears because of the Errorboundary component. After doing research I found that this error only occurs in development and not in production. To get rid of the overlay, just click on the 'x' in the top right corner to see result of the error.
+
 ## Libraries Used
 
 - create-react-app
