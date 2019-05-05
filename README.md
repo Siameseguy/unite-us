@@ -14,7 +14,7 @@ The validations are custom (I wanted to limit the number of external libraries u
 
 Tests mainly consist of making mock calls to the API and making sure they are set to state.
 
-## Tools
+## Libraries Used
 
 - create-react-app
 - axios
